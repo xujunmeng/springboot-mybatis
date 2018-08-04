@@ -23,4 +23,10 @@ public class TestBootController {
         User user = userService.getUserById(1);
         return user;
     }
+
+    @GetMapping("/exception")
+    public User getException() {
+        int i = 1/0;
+        return null;
+    }
 }
