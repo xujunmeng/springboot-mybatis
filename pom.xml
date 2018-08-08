@@ -85,7 +85,7 @@
         <dependency>
             <groupId>com.aihuishou</groupId>
             <artifactId>common-alarm</artifactId>
-            <version>0.0.11-SNAPSHOT</version>
+            <version>0.0.12-SNAPSHOT</version>
         </dependency>
 
         <dependency>
