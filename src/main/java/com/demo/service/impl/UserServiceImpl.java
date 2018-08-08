@@ -1,5 +1,6 @@
 package com.demo.service.impl;
 
+import com.aihuishou.common.db.annotation.DBSlave;
 import com.demo.dao.UserMapper;
 import com.demo.entity.User;
 import com.demo.service.UserService;
@@ -17,6 +18,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
 
+    @DBSlave
     @Override
     public User getUserById(int userId) {
         return userMapper.selectByPrimaryKey(userId);
