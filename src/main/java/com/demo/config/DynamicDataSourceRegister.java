@@ -34,7 +34,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
     /**
      * 更多数据源
      */
-    private Map<String, DataSource> customDataSources = new HashMap<>();
+    private Map<String, DataSource> customerDataSources = new HashMap<>();
 
     @Override
     public void setEnvironment(Environment environment) {
@@ -56,7 +56,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
         MutablePropertyValues mpv = beanDefinition.getPropertyValues();
         //spring名称约定为defaultTargetDataSource和targetDataSources
         mpv.addPropertyValue("writeDataSource", defaultDataSource);
-        mpv.addPropertyValue("readDataSourceMap", customDataSources);
+        mpv.addPropertyValue("readDataSourceMap", customerDataSources);
 
         registry.registerBeanDefinition("dataSource", beanDefinition);
     }
@@ -71,14 +71,9 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
     private void initDefaultDataSource(Environment env){
 
         // 读取主数据源
-        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "spring.datasource.");
+        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "spring.datasource");
 
-        Map<String, Object> dsMap = new HashMap<>();
-        dsMap.put("type", propertyResolver.getProperty("type"));
-        dsMap.put("driverClassName", propertyResolver.getProperty("driverClassName"));
-        dsMap.put("url", propertyResolver.getProperty("url"));
-        dsMap.put("username", propertyResolver.getProperty("username"));
-        dsMap.put("password", propertyResolver.getProperty("password"));
+        Map<String, Object> dsMap = propertyResolver.getSubProperties(".");
 
         //创建数据源;
         defaultDataSource = buildDataSource(dsMap);
@@ -92,7 +87,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
      */
     private void initCustomDataSources(Environment env) {
         // 读取配置文件获取更多数据源，也可以通过defaultDataSource读取数据库获取更多数据源
-        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "custom.datasource.");
+        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "customer.datasource.");
 
         String dsPrefixs = propertyResolver.getProperty("names");
 
@@ -104,7 +99,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
             Map<String, Object> dsMap = propertyResolver.getSubProperties(dsPrefix + ".");
             DataSource ds = buildDataSource(dsMap);
 
-            customDataSources.put(dsPrefix, ds);
+            customerDataSources.put(dsPrefix, ds);
         }
     }
 
@@ -129,7 +124,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
         try {
 
             dataSourceType = (Class<? extends DataSource>) Class.forName((String) type);
-            String driverClassName = dsMap.get("driverClassName").toString();
+            String driverClassName = dsMap.get("driver-class-name").toString();
             String url = dsMap.get("url").toString();
             String username = dsMap.get("username").toString();
             String password = dsMap.get("password").toString();
