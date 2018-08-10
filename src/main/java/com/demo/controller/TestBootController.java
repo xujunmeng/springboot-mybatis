@@ -1,10 +1,12 @@
 package com.demo.controller;
 
+import com.aihuishou.common.db.annotation.DBSlave;
 import com.demo.entity.User;
 import com.demo.model.ExceptionParamModel;
 import com.demo.model.SelftException;
 import com.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
