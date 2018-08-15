@@ -5,6 +5,7 @@ import com.aihuishou.common.db.annotation.EnableDBSlave;
 import com.aihuishou.common.db.register.DynamicDataSourceRegister;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
