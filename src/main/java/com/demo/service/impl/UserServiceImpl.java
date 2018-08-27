@@ -25,15 +25,14 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByPrimaryKey(userId);
     }
 
+
+    @Transactional
     @Override
     public boolean addUser(User record){
         boolean result = false;
-        try {
-            userMapper.insertSelective(record);
-            result = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        userMapper.insertSelective(record);
+        int i = 1/0;
+        result = true;
 
         return result;
     }

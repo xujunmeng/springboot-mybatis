@@ -1,5 +1,6 @@
 package com.demo.dao;
 
+import com.aihuishou.common.db.annotation.DBSlave;
 import com.demo.entity.User;
 import org.apache.ibatis.annotations.Param;
 

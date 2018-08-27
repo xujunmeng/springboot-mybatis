@@ -31,4 +31,15 @@ public class TestBootController {
         int i = 1/0;
         return null;
     }
+
+    @GetMapping("/adduser")
+    public User getUser2() {
+        User user = new User();
+        user.setId(7);
+        user.setUserName("xxx");
+        user.setAge(22);
+        user.setPassword("123456");
+        userService.addUser(user);
+        return user;
+    }
 }
