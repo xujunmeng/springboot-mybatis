@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement(proxyTargetClass = true)
 @EnableAspectJAutoProxy
 @EnableAsync(proxyTargetClass = true)
+@EnableScheduling
 public class DemoApplication{
 
     public static void main(String[] args) {
