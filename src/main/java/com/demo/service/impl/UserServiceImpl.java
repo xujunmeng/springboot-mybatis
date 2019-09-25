@@ -5,6 +5,7 @@ import com.demo.entity.User;
 import com.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author james
@@ -17,9 +18,11 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
 
+    @Transactional
     @Override
     public User getUserById(int userId) {
-        return userMapper.selectByPrimaryKey(userId);
+        User user = userMapper.selectByPrimaryKey(userId);
+        return user;
     }
 
     @Override
