@@ -3,6 +3,7 @@ package com.demo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @MapperScan(value = "com.demo.dao")
 @EnableTransactionManagement(proxyTargetClass = true)
+@EnableAsync
 public class DemoApplication{
 
     public static void main(String[] args) {
