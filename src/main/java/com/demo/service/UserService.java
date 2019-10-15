@@ -12,4 +12,6 @@ public interface UserService {
 
     boolean addUser(User record);
 
+    void testTransactionMark();
+
 }
